@@ -4,7 +4,7 @@
     const router=express.Router()
 
     router.get('/users',protectRoute,getUserForSidebar)
-    router.post('/chat/:id',protectRoute,sendMessage)
+    router.post('/send/:id',protectRoute,sendMessage)
     router.get('/:id',protectRoute,getMessages)
 
     export default router
