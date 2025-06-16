@@ -6,7 +6,7 @@ import {Toaster} from 'react-hot-toast'
 import Navbar from '../src/pages/Navbar.jsx'
 import Homepage from '../src/pages/Homepage.jsx'
 
-import Login from '../src/pages/Login.jsx'
+import Login from './pages/Login.jsx'
 import SettingsPage from '../src/pages/SettingsPage.jsx'
 import ProfilePage from '../src/pages/ProfilePage.jsx'
 import { userAuthStore } from './store/useAUthStore.js'
