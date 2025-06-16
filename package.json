@@ -7,16 +7,7 @@
     "build":"npm install --prefix Backend && npm install --prefix Frontend && npm run build --prefix Frontend",
     "start": "npm run start --prefix Backend"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Ksoni-2311/chatApp.git"
-  },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/Ksoni-2311/chatApp/issues"
-  },
-  "homepage": "https://github.com/Ksoni-2311/chatApp#readme"
+  "license": "ISC"
 }
