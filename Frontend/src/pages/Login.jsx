@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { userAuthStore } from '../store/useAUthStore'
+import { userAuthStore } from '../store/useAUthStore.js'
 import { Eye, EyeOff, Loader2, Lock, Mail, MessageSquare } from 'lucide-react'
 import AuthImagePattern from '../components/skletons/AuthImagePattern.jsx'
 import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
 
-function login() {
+function Login() {
   const [showPassword,setShowPassword]=useState(false)
   const [FormData,setFormData]=useState({
     email:"",
@@ -129,4 +129,4 @@ function login() {
 };
 
 
-export default login;
+export default Login;
