@@ -1,7 +1,7 @@
 import React from 'react'
 import {useChatStore} from '../store/useChatStore'
 import Sidebar from '../components/skletons/Sidebar.jsx'
-import NochatSelected from '../components/skletons/NochatSelected.jsx'
+import NochatSelected from '../components/skletons/NoChatSelected.jsx'
 import ChatContainer from '../components/ChatContainer.jsx'
 function Homepage() {
   const {selectedUser}=useChatStore()
