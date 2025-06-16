@@ -10,7 +10,7 @@ import Login from './pages/Login.jsx'
 import SettingsPage from '../src/pages/SettingsPage.jsx'
 import ProfilePage from '../src/pages/ProfilePage.jsx'
 import { userAuthStore } from './store/useAUthStore.js'
-import SignupPage from './pages/signUpPage.jsx'
+import SignupPage from './pages/SignupPage.jsx'
 import { useThemeStore } from './store/useThemeStore.js'
 
 function App() {
