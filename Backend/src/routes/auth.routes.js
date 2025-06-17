@@ -4,13 +4,9 @@ import { protectRoute } from '../middleware/auth.middleware.js';
 const router=express.Router();
 
 router.post("/signup",signup)
-
 router.post("/login",login)
-
 router.post("/logout",logout)
-
 router.put("/update-profile",protectRoute,updateProfilePic)
-
 router.get("/check",protectRoute,chechAuth)
 
 export default router;

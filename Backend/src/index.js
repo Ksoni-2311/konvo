@@ -1,42 +1,66 @@
-import express from 'express'
-import dotenv from 'dotenv'
-import authRoutes from './routes/auth.routes.js'
-import messageRoutes from './routes/message.routes.js'
+import express from 'express';
+import dotenv from 'dotenv';
+import authRoutes from './routes/auth.routes.js';
+import messageRoutes from './routes/message.routes.js';
 import cookieParser from 'cookie-parser';
-import {app,server} from './lib/soket.js';
-import cors from 'cors'
-import {connectDB} from './lib/db.js'
+import cors from 'cors';
+import { app, server } from './lib/soket.js';
+import { connectDB } from './lib/db.js';
 import path from 'path';
 
-const __dirname=path.resolve()
 dotenv.config();
+const __dirname = path.resolve();
 
+// ✅ Ensure PORT is available
+const PORT = process.env.PORT || 5000;
+
+// ✅ Serving static files in production
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../Frontend/dist")));
+  const staticPath = path.join(__dirname, "../Frontend/dist");
+  console.log("🗂️ Serving static files from:", staticPath);
+
+  app.use(express.static(staticPath));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../Frontend", "dist", "index.html"));
+    res.sendFile(path.join(staticPath, "index.html"));
   });
 }
 
-const PORT=process.env.PORT;
 app.use(cookieParser());
+
 app.use(cors({
-    origin:"http://localhost:5173",
-    credentials:true
-})); 
+  origin: "http://localhost:5173",
+  credentials: true,
+}));
 
-app.use(express.json({ limit: "10mb" })); // ✅ fix for large JSON (like base64 image)
-app.use(express.urlencoded({ extended: true, limit: "10mb" })); // ✅ fix for form data
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
+// ✅ Mount routes with debug logs
+try {
+  console.log("🛣️ Mounting /api/auth...");
+  app.use("/api/auth", authRoutes);
+} catch (err) {
+  console.error("❌ Failed to mount /api/auth:", err);
+}
 
+try {
+  console.log("🛣️ Mounting /api/messages...");
+  app.use("/api/messages", messageRoutes);
+} catch (err) {
+  console.error("❌ Failed to mount /api/messages:", err);
+}
 
+// ✅ Start server with PORT and DB check
+server.listen(PORT, () => {
+  console.log(`🚀 App is listening at port ${PORT}`);
 
-app.use("/api/auth",authRoutes);
-app.use("/api/messages",messageRoutes);
+  const mongoUri = process.env.MONGO_URI;
+  if (!mongoUri) {
+    console.error("❌ MONGO_URI is not defined in .env");
+    process.exit(1); // Stop the app if DB is misconfigured
+  }
 
-server.listen(PORT,()=>{
-    console.log("app is listening at port "+ PORT)
-    connectDB();
-    
-})
+  console.log("🔗 Connecting to MongoDB...");
+  connectDB();
+});
