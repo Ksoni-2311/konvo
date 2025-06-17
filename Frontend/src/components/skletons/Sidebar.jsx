@@ -20,7 +20,7 @@ function Sidebar() {
 
   if(isUserLoading) return <SidebarSkeleton />
   return (
-    <aside className="h-full w-20 lg:w-72  border-r border-base-300 flex flex-col transition-all duration-200 md:w-fit sm:w-fit">
+    <aside className="h-full w-20 lg:w-72  border-r border-base-300 flex flex-col transition-all duration-200 md:w-fit sm:w-full">
       <div className="border-b border-base-300 w-full p-5">
         <div className="flex items-center gap-2">
           <Users className="size-6" />
@@ -28,13 +28,13 @@ function Sidebar() {
         </div>
 
         {/* Todo:Online filter toggle */}
-        <div className="mt-3 hidden :flex items-center gap-2">
+        <div className="mt-3 hidden md:flex items-center gap-2 rounded-2xl">
           <label className="cursor-pointer flex items-center gap-2">
             <input
               type="checkbox"
               checked={showOnlineOnly}
               onChange={(e) => setShowOnlineOnly(e.target.checked)}
-              className="checkbox checkbox-sm"
+              className="checkbox checkbox-sm rounded-2xl"
             />
             <span className="text-sm">Show online only</span>
           </label>
@@ -42,7 +42,7 @@ function Sidebar() {
         </div>
       </div>
 
-      <div className="overflow-y-auto w-full py-3">
+      <div className="overflow-y-auto md:w-full py-3">
         {filteredUsers.map((user) => (
           <button
             key={user._id}
@@ -53,9 +53,9 @@ function Sidebar() {
               ${selectedUser?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}
             `}
           >
-            <div className="relative mx-auto lg:mx-0">
+            <div className="relative mx-auto md:mx-0">
               <img
-                className="size-12 object-cover rounded-full"
+                className="size-12 object-cover rounded-full hidden sm:block "
                 src={user.profilePic || avatar}
                 alt={user.name}
               />
@@ -63,7 +63,7 @@ function Sidebar() {
                 <span className="absolute bottom-0 right-0 size-3 bg-green-500 rounded-full ring-2 ring-zinc-900" />
               )}
             </div>
-            <div className="hidden sm:block text-left min-w-0">
+            <div className=" sm:block text-left min-w-0">
               <div className="font-medium truncate">{user.fullName}</div>
               <div className="text-sm text-zinc-400">
                 {onlineUsers.includes(user._id) ? "Online" : "Offline"}
