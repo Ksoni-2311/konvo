@@ -10,7 +10,8 @@ function SignupPage() {
     const [FormData, setFormData] = useState({
         fullName: "",
         emsil: "",
-        password: ""
+        password: "",
+        profilePic:""
     })
     const { signup, isSigningUp } = userAuthStore();
 
