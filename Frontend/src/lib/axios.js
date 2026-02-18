@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const axiosInstance= axios.create({
-    baseURL:import.meta.env.MODE==="development"?"http://localhost:2311/api":"/api",
+    baseURL:import.meta.env.MODE==="development"?"https://konvo-1.onrender.com/api":"/api",
     withCredentials:true
 })
 
