@@ -22,7 +22,10 @@ app.use(cookieParser());
 console.log("cookieParser middleware added.");
 
 app.use(cors({
-  origin:  process.env.CLIENT_URL,
+  origin: [
+    "http://localhost:5173",
+    "https://konvo-4r46.vercel.app"
+  ],
   credentials: true
 }));
 console.log("CORS middleware added.");
